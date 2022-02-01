@@ -4,7 +4,11 @@ import dotenv from "dotenv";
 
 export default (request: VercelRequest, response: VercelResponse) => {
   dotenv.config();
-  const certs = JSON.parse(atob(process.env.GOOGLE_APPLICATION_CREDENTIALS));
+  const certs = JSON.parse(
+    Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, "base64").toString(
+      "utf-8"
+    )
+  );
 
   const app = admin.initializeApp({
     credential: admin.credential.cert(certs),
