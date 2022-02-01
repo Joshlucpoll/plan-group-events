@@ -6,7 +6,7 @@ export default (request: VercelRequest, response: VercelResponse) => {
   dotenv.config();
   const certs = JSON.parse(atob(process.env.GOOGLE_APPLICATION_CREDENTIALS));
 
-  admin.initializeApp({
+  const app = admin.initializeApp({
     credential: admin.credential.cert(certs),
     databaseURL:
       "https://plan-group-events-default-rtdb.europe-west1.firebasedatabase.app",
@@ -16,13 +16,17 @@ export default (request: VercelRequest, response: VercelResponse) => {
 
   const { id } = request.query;
 
+  const delApp = () => app.delete();
+
   const ref = db.ref("/events/" + id);
   ref.once("value", function (snap) {
     const val = snap.val();
     if (val) {
       response.status(200).send(val);
+      delApp();
     } else {
       response.status(404);
+      delApp();
     }
   });
 };
