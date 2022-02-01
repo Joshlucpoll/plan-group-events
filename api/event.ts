@@ -29,7 +29,7 @@ export default (request: VercelRequest, response: VercelResponse) => {
       response.status(200).send(val);
       delApp();
     } else {
-      response.status(404);
+      response.status(404).send("Event not found");
       delApp();
     }
   });
