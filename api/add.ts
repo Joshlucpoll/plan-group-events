@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import admin from "firebase-admin";
 import dotenv from "dotenv";
 import { readFileSync } from "fs";
+const { join } = require("path");
 
 const stringCheckBool = (str: string) =>
   str == "true" || str == "false" ? str == "true" : str;
@@ -40,7 +41,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     var id: string;
     var ref;
     while (true) {
-      const file = readFileSync("./nouns.txt", "utf-8");
+      const file = readFileSync(join(__dirname, "_files", "nouns.txt"), "utf8");
       const nouns = file.split("\n");
       const getRanNoun = () => nouns[Math.floor(Math.random() * nouns.length)];
       const randomNouns = [getRanNoun(), getRanNoun(), getRanNoun()];

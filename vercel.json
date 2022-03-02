@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/add.js": {
+      "includeFiles": "_files/nouns.txt"
+    }
+  }
+}
