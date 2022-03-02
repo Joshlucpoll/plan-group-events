@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/add.ts": {
-      "includeFiles": "_files/nouns.txt"
+      "includeFiles": "api/nouns.txt"
     }
   }
 }

@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import admin from "firebase-admin";
 import dotenv from "dotenv";
-import { readFileSync } from "fs";
+const { readFileSync } = require("fs");
 const { join } = require("path");
 
 const stringCheckBool = (str: string) =>
@@ -22,12 +22,13 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   });
 
   const db = admin.database();
+  var data;
 
   try {
     const { title, description, datetime, location, participants } =
       request.query;
 
-    const data = {
+    data = {
       title,
       description: stringCheckBool(description as string),
       datetime: parseInt(datetime as string),
@@ -36,29 +37,29 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       created_at: Math.trunc(Date.now() / 1000),
       updated_at: Math.trunc(Date.now() / 1000),
     };
-
-    // const id = uuidv4();
-    var id: string;
-    var ref;
-    while (true) {
-      const file = readFileSync(join(__dirname, "_files", "nouns.txt"), "utf8");
-      const nouns = file.split("\n");
-      const getRanNoun = () => nouns[Math.floor(Math.random() * nouns.length)];
-      const randomNouns = [getRanNoun(), getRanNoun(), getRanNoun()];
-
-      id = randomNouns.join("-");
-
-      ref = db.ref("/events/" + id);
-      if (await ref.get().then((snap) => !snap.exists())) {
-        break;
-      }
-    }
-
-    await ref.set(data).then((outcome) => {
-      response.status(201).send(id);
-    });
   } catch (error) {
-    response.status(400).send("Could not parse params");
+    response.status(400).send("Could not parse params\n\n" + error);
   }
+
+  // const id = uuidv4();
+  var id: string;
+  var ref;
+  while (true) {
+    const file = readFileSync(join(__dirname, "nouns.txt"), "utf8");
+    const nouns = file.split("\n");
+    const getRanNoun = () => nouns[Math.floor(Math.random() * nouns.length)];
+    const randomNouns = [getRanNoun(), getRanNoun(), getRanNoun()];
+
+    id = randomNouns.join("-");
+
+    ref = db.ref("/events/" + id);
+    if (await ref.get().then((snap) => !snap.exists())) {
+      break;
+    }
+  }
+
+  await ref.set(data).then((outcome) => {
+    response.status(201).send(id);
+  });
   await app.delete();
 };
