@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/add.js": {
+    "api/add.ts": {
       "includeFiles": "_files/nouns.txt"
     }
   }
