@@ -1,59 +1,47 @@
 <script context="module" lang="ts">
-	export const prerender = true;
-</script>
+  import SearchBar from "$lib/SearchBar.svelte";
 
-<script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+  export const prerender = true;
 </script>
 
 <svelte:head>
-	<title>Home</title>
+  <title>Home</title>
 </svelte:head>
 
 <section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
+  <h1>Plan Group Events</h1>
 
-		to your new<br />SvelteKit app
-	</h1>
+  <div class="container">
+    <h2>type an event id to see what's planned:</h2>
+    <SearchBar />
+  </div>
 
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
+  <div />
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+  }
 
-	h1 {
-		width: 100%;
-	}
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
+  h1 {
+    width: 100%;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 0;
+  }
+  h2 {
+    color: rgb(175, 173, 173);
+  }
 </style>
