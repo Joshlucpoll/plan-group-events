@@ -56,7 +56,9 @@
 <div class="input-container">
   <input
     type="search"
-    placeholder="{placeholderText}{placeholderCursor}"
+    placeholder={placeholderAnimation
+      ? placeholderText + placeholderCursor
+      : ""}
     on:focus={() => (placeholderAnimation = false)}
     on:focusout={() => (placeholderAnimation = true)}
     bind:value={searchQuery}
