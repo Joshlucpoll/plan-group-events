@@ -25,7 +25,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   var data;
 
   try {
-    const { title, description, datetime, location, participants } =
+    const { title, description, datetime, location, organiser, participants } =
       request.query;
 
     data = {
@@ -33,6 +33,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       description: stringCheckBool(description as string),
       datetime: parseInt(datetime as string),
       location: stringCheckBool(location as string),
+      organiser: organiser,
       participants: (participants as string).split(","),
       created_at: Math.trunc(Date.now() / 1000),
       updated_at: Math.trunc(Date.now() / 1000),

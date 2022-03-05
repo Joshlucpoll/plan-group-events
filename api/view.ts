@@ -20,8 +20,6 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const { id } = request.query;
 
-  const delApp = () => app.delete();
-
   const ref = db.ref("/events/" + id);
   await ref.get().then((snap) => {
     const val = snap.val();
