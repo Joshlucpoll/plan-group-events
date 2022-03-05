@@ -9,14 +9,14 @@
 </svelte:head>
 
 <section>
-  <h1>Plan Group Events</h1>
+  <h1>plan group events</h1>
 
   <div class="container">
-    <h2>type an event id to see what's planned:</h2>
+    <h2>type an event id <span /> to see what's planned:</h2>
     <SearchBar />
   </div>
 
-  <div />
+  <div class="explore-btn">what's this?</div>
 </section>
 
 <style>
@@ -43,5 +43,20 @@
   }
   h2 {
     color: rgb(175, 173, 173);
+  }
+
+  .explore-btn {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    border: solid white 0.15rem;
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: transform 200ms ease;
+  }
+
+  .explore-btn:hover {
+    transform: translateY(-0.25rem);
   }
 </style>

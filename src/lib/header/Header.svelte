@@ -11,7 +11,7 @@
 
   <div class="corner">
     <a sveltekit:prefetch href="/new" class="create-btn">
-      <div class="create">Create</div>
+      <div class="create">create</div>
     </a>
   </div>
 </header>
@@ -33,6 +33,9 @@
     justify-content: center;
   }
 
+  .logo {
+    transition: transform 200ms ease;
+  }
   .corner a {
     width: 100%;
     /* height: 100%; */
@@ -51,6 +54,11 @@
     background-color: white;
     border-radius: 0.25rem;
     cursor: pointer;
+    transition: transform 200ms ease;
+  }
+  .create-btn:hover,
+  .logo:hover {
+    transform: scale(1.05);
   }
 
   .create {

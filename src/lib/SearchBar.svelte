@@ -28,7 +28,7 @@
           placeholderText.length + 1
         );
         placeholderText = placeholderText;
-        await new Promise((r) => setTimeout(r, 100 + Math.random() * 300));
+        await new Promise((r) => setTimeout(r, 50 + Math.random() * 200));
       } else {
         placeholderText = "";
         await new Promise((r) => setTimeout(r, 1000));
@@ -62,26 +62,54 @@
     bind:value={searchQuery}
   />
   <div
+    class="paste-btn"
     on:click={async () => (searchQuery = await navigator.clipboard.readText())}
   >
-    Paste
+    paste
   </div>
 </div>
 
 <style>
-  input {
-    width: 90%;
-    max-width: 1000px;
-
-    padding: 1rem;
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
     border: none;
-    box-shadow: 5px 5px 15px 5px #00000077;
+    box-shadow: 5px 5px 20px 5px rgba(162, 162, 162, 0.459);
+
+    width: calc(100vw - 4rem);
+    max-width: 600px;
+
+    transition: all 200ms ease;
+  }
+
+  .input-container:hover,
+  .input-container:focus-within {
+    box-shadow: 5px 5px 30px 5px rgba(162, 162, 162, 0.459);
+    max-width: 650px;
+    transform: scale(1.05);
+  }
+  input {
+    padding: 1rem;
+    width: 100%;
 
     color: black;
+    border-radius: 0.5rem;
+    border: none;
 
     text-align: center;
+  }
+
+  input:focus {
+    outline: none;
+  }
+  .paste-btn {
+    margin: 0 1rem;
+    font-size: 0.75rem;
+
+    cursor: pointer;
   }
 </style>
