@@ -11,15 +11,22 @@
 
   <div class="corner">
     <a sveltekit:prefetch href="/new" class="create-btn">
-      <div class="create">create</div>
+      <div class="create">Create</div>
     </a>
   </div>
 </header>
 
 <style>
   header {
+    height: 5rem;
     display: flex;
     justify-content: space-between;
+    z-index: 10;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.8) 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
     /* background-color: red; */
   }
 
