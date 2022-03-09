@@ -16,9 +16,7 @@ It then provides you with a link to share to friends/family; then they can then 
 
 The organiser then has a list of people coming and can do the relevant bookings/reservations.
 
-## Made using
-
-|                                                |                                                       |
+| Made                                           | Using                                                 |
 | ---------------------------------------------- | ----------------------------------------------------- |
 | [SvelteKit](https://kit.svelte.dev/)           | [Firebase Database](https://firebase.google.com)      |
 | [Vercel Hosting/Functions](https://vercel.com) | [Illustrations by Open Peeps](https://openpeeps.com/) |
