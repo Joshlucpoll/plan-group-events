@@ -1,40 +1,22 @@
-# create-svelte
+# <img src ="https://github.com/joshlucpoll/plan-group-events/blob/main/static/favicon.png?raw=true" width="30"> Plan Group Events
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+![](https://github.com/joshlucpoll/plan-group-events/blob/main/static/cover.svg?raw=true)
 
-## Creating a project
+Are you sick and tired of having to organise events for large groups -- working out who's coming and who's not 😰
 
-If you're seeing this, you've probably already done this step. Congrats!
+Plane Group Events simple web app that allows you to create an event with:
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+- [x] Title
+- [x] Date/Time
+- [x] Organiser
+- [x] Description _(optional)_
+- [x] Location _(optional)_
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+It then provides you with a link to share to friends/family; then they can then decide to attend or not!
 
-> Note: the `@next` is temporary
+The organiser then has a list of people coming and can do the relevant bookings/reservations.
 
-## Developing
+## Made using
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+| [SvelteKit](https://kit.svelte.dev/) | [Firebase Database](https://firebase.google.com) | [Vercel Hosting/Functions](https://vercel.com) |
+| ------------------------------------ | ------------------------------------------------ | ---------------------------------------------- |
