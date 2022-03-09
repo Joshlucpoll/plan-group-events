@@ -1,4 +1,6 @@
 <script lang="ts">
+  // const urlIdPattern = /
+
   const placeholders = [
     "machine career guy",
     "plant-wind-document",
@@ -48,6 +50,12 @@
     }
   }
 
+  function handleKeyPress(e) {
+    if (e.charCode == 13) {
+      let completeSearchQuery = searchQuery;
+    }
+  }
+
   let searchBar;
   let searchQuery = "";
   updatePlaceholder();
@@ -57,13 +65,14 @@
 <div class="input-container">
   <input
     type="search"
+    bind:this={searchBar}
     placeholder={placeholderAnimation
       ? placeholderText + placeholderCursor
       : ""}
     on:focus={() => (placeholderAnimation = false)}
     on:focusout={() => (placeholderAnimation = true)}
+    on:keypress={handleKeyPress}
     bind:value={searchQuery}
-    bind:this={searchBar}
   />
   <div
     class="paste-btn"
