@@ -21,19 +21,16 @@
     height: 5rem;
     display: flex;
     justify-content: space-between;
+    align-content: flex-end;
     z-index: 10;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.8) 20%,
+      rgba(0, 0, 0, 0.6) 0%,
       rgba(0, 0, 0, 0) 100%
     );
-    /* background-color: red; */
   }
 
   .corner {
-    /* margin-left: 2em;
-    margin-right: 2em;
-    margin-top: 1rem; */
     margin: 1rem 2rem 0rem 2rem;
     display: flex;
     align-items: center;
@@ -43,6 +40,7 @@
   .logo {
     transition: transform 200ms ease;
   }
+
   .corner a {
     width: 100%;
     /* height: 100%; */
@@ -60,9 +58,11 @@
     padding: 0.75rem 1rem;
     background-color: white;
     border-radius: 0.25rem;
+    border: solid 2px black;
     cursor: pointer;
     transition: transform 200ms ease;
   }
+
   .create-btn:hover,
   .logo:hover {
     transform: scale(1.05);

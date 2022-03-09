@@ -48,6 +48,7 @@
     }
   }
 
+  let searchBar;
   let searchQuery = "";
   updatePlaceholder();
   updateCursor();
@@ -62,10 +63,14 @@
     on:focus={() => (placeholderAnimation = false)}
     on:focusout={() => (placeholderAnimation = true)}
     bind:value={searchQuery}
+    bind:this={searchBar}
   />
   <div
     class="paste-btn"
-    on:click={async () => (searchQuery = await navigator.clipboard.readText())}
+    on:click={async () => {
+      searchQuery = await navigator.clipboard.readText();
+      searchBar.focus();
+    }}
   >
     paste
   </div>
@@ -79,7 +84,7 @@
 
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
-    border: none;
+    border: solid 2px black;
     box-shadow: 5px 5px 20px 5px rgba(162, 162, 162, 0.459);
 
     width: calc(100vw - 4rem);
@@ -103,6 +108,7 @@
     border: none;
 
     text-align: center;
+    background-color: transparent;
   }
 
   input:focus {
@@ -111,6 +117,7 @@
   .paste-btn {
     margin: 0 1rem;
     font-size: 0.75rem;
+    font-weight: bold;
 
     cursor: pointer;
   }

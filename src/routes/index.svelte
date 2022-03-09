@@ -3,7 +3,25 @@
 
   export const prerender = true;
 
+  function longShadowCalculator(
+    direction: number,
+    length: number,
+    color: string
+  ) {
+    let shadows = "";
+    for (let i = 1; i < length; i++) {
+      let xLength = Math.round(Math.sin(direction) * 100) / 100;
+      let yLength = Math.round(Math.cos(direction) * 100) / 100;
+
+      shadows =
+        shadows + xLength * i + "px " + yLength * i + "px " + color + ", ";
+    }
+    shadows = shadows.slice(0, -2);
+    return shadows;
+  }
+
   let aboutEl;
+  const shadowStyle = "text-shadow: " + longShadowCalculator(0.78, 50, "black");
 </script>
 
 <svelte:head>
@@ -12,7 +30,7 @@
 
 <section>
   <div>
-    <h1 class="title">
+    <h1 class="title" style={shadowStyle}>
       <span>plan</span><span>group</span><span>events</span>
     </h1>
     <img class="cover" src="cover.svg" alt="coverphoto" />
@@ -28,7 +46,7 @@
   </div>
 </section>
 
-<div bind:this={aboutEl} style="color: white;">
+<div bind:this={aboutEl}>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum
   luctus elit nec sollicitudin. Phasellus eget sem quis nulla pellentesque
   elementum. Sed vel lectus suscipit, finibus diam eget, tempus felis. Nulla non
@@ -108,7 +126,7 @@
   }
   .title {
     position: absolute;
-    top: calc(35vh - 7.5rem);
+    top: calc(35vh - 6rem);
     left: max(calc(50vw - 300px), 2rem);
     margin: 0;
 
@@ -120,21 +138,25 @@
   }
 
   .title span {
-    font-size: 5rem;
+    font-size: 4rem;
+    line-height: 4rem;
     color: white;
     -webkit-text-stroke: 2px black;
     font-weight: bolder;
   }
-  h2 {
-    color: rgb(175, 173, 173);
+
+  .subtitle {
+    margin-top: 1rem;
+    color: rgb(0, 0, 0);
+    font-style: italic;
   }
 
   .explore-btn {
     margin-bottom: 3rem;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    color: white;
-    border: solid white 0.15rem;
+    color: black;
+    border: solid black 0.15rem;
     cursor: pointer;
     font-weight: bold;
 
