@@ -17,8 +17,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const app = admin.initializeApp({
     credential: admin.credential.cert(certs),
-    databaseURL:
-      "https://plan-group-events-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: "https://plan-group-events-3fad0-default-rtdb.firebaseio.com",
   });
 
   const db = admin.database();
