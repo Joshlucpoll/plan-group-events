@@ -18,5 +18,7 @@ The organiser then has a list of people coming and can do the relevant bookings/
 
 ## Made using
 
-| [SvelteKit](https://kit.svelte.dev/) | [Firebase Database](https://firebase.google.com) | [Vercel Hosting/Functions](https://vercel.com) |
-| ------------------------------------ | ------------------------------------------------ | ---------------------------------------------- |
+|                                                |                                                       |
+| ---------------------------------------------- | ----------------------------------------------------- |
+| [SvelteKit](https://kit.svelte.dev/)           | [Firebase Database](https://firebase.google.com)      |
+| [Vercel Hosting/Functions](https://vercel.com) | [Illustrations by Open Peeps](https://openpeeps.com/) |
