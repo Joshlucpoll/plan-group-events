@@ -4,7 +4,7 @@
 
 Are you sick and tired of having to organise events for large groups -- working out who's coming and who's not 😰
 
-Plane Group Events simple web app that allows you to create an event with:
+Plan Group Events simple web app that allows you to create an event with:
 
 - [x] Title
 - [x] Date/Time
