@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   import SearchBar from "$lib/SearchBar.svelte";
+  import smoothscroll from "smoothscroll-polyfill";
 
   export const prerender = true;
 
@@ -20,6 +21,7 @@
     return shadows;
   }
 
+  smoothscroll.polyfill();
   let aboutEl;
   const shadowStyle = "text-shadow: " + longShadowCalculator(0.78, 50, "black");
 </script>
@@ -38,10 +40,12 @@
 
   <div class="container">
     <SearchBar />
-    <h2 class="subtitle">type an event id <span /> to see what's planned</h2>
   </div>
 
-  <div on:click={() => aboutEl.scrollIntoView(true)} class="explore-btn">
+  <div
+    on:click={() => aboutEl.scrollIntoView({ behavior: "smooth" })}
+    class="explore-btn"
+  >
     Huh?
   </div>
 </section>
@@ -91,6 +95,13 @@
   aliquet. Phasellus vitae condimentum enim, et fermentum leo.
 </div>
 
+<div class="credit">
+  Made by
+  <a href="https://joshlucpoll.com" target="_blank" rel="noopener noreferrer">
+    Joshlucpoll
+  </a>
+</div>
+
 <style>
   section {
     display: flex;
@@ -107,7 +118,7 @@
     top: 0;
     left: 0;
     height: 70vh;
-    width: 100vw;
+    width: 100%;
     object-fit: cover;
 
     z-index: 0;
@@ -115,7 +126,7 @@
 
   .container {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     top: calc(70vh - 1.7rem);
     left: 0;
 
@@ -145,12 +156,6 @@
     font-weight: bolder;
   }
 
-  .subtitle {
-    margin-top: 1rem;
-    color: rgb(0, 0, 0);
-    font-style: italic;
-  }
-
   .explore-btn {
     margin-bottom: 3rem;
     padding: 0.75rem 1rem;
@@ -165,5 +170,65 @@
 
   .explore-btn:hover {
     transform: translateY(-0.25rem);
+  }
+
+  .credit {
+    background-color: #181a1b;
+    color: rgba(256, 256, 256, 0.4);
+    padding: 10px;
+    position: fixed;
+    border-top-right-radius: 10px;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    font-size: 15px;
+  }
+
+  .credit::selection {
+    color: none;
+    background: none;
+  }
+
+  .credit a::selection {
+    color: none;
+    background: none;
+  }
+
+  .credit a {
+    color: white;
+    text-decoration: none;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  .credit a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #d08b5b;
+    background: -webkit-linear-gradient(to right, #a7724d, #f3a46c);
+    background: linear-gradient(to right, #a7724d, #f3a46c);
+    visibility: hidden;
+    transform: scaleX(0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .credit a:hover {
+    background: #d08b5b;
+    background: -webkit-linear-gradient(to right, #c2875d, #f3a46c);
+    background: linear-gradient(to right, #b67343, #f3a46c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .credit a:hover::before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
   }
 </style>

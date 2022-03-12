@@ -28,6 +28,6 @@
     "cookie": "^0.4.1",
     "dotenv": "^15.0.0",
     "firebase-admin": "^10.0.2",
-    "uuid": "^8.3.2"
+    "smoothscroll-polyfill": "^0.4.4"
   }
 }

@@ -1,4 +1,7 @@
 <script lang="ts">
+  const urlIdPattern = /\b[^\d\W]+\b-\b[^\d\W]+\b-\b[^\d\W]+\b/;
+  const variationPattern = /\b[^\d\W]+\b \b[^\d\W]+\b \b[^\d\W]+\b/;
+
   const placeholders = [
     "machine career guy",
     "plant-wind-document",
@@ -48,35 +51,85 @@
     }
   }
 
+  async function handleKeyPress(e) {
+    if (e.charCode == 13) {
+      const match = urlIdPattern.exec(searchQuery);
+      const variationMatch = variationPattern.exec(searchQuery);
+
+      if (match) document.location.href = `/${match[0]}`;
+      else if (variationMatch)
+        document.location.href = `/${variationMatch[0].split(" ").join("-")}`;
+      else {
+        subtitle.innerHTML = `'${searchQuery}'' is an invalid event id :(`;
+        subtitle.style.color = "red";
+        subtitle.animate(
+          [
+            { transform: "translateX(0px)" },
+            { transform: "translateX(-1px)" },
+            { transform: "translateX(-2px)" },
+            { transform: "translateX(-3px)" },
+            { transform: "translateX(-3px)" },
+            { transform: "translateX(-2px)" },
+            { transform: "translateX(-1px)" },
+            { transform: "translateX(0px)" },
+            { transform: "translateX(1px)" },
+            { transform: "translateX(2px)" },
+            { transform: "translateX(3px)" },
+            { transform: "translateX(3px)" },
+            { transform: "translateX(2px)" },
+            { transform: "translateX(1px)" },
+            { transform: "translateX(0px)" },
+          ],
+          { duration: 200, iterations: 3 }
+        );
+      }
+    }
+  }
+
+  let incorrectInput = false;
+
+  let subtitle;
   let searchBar;
   let searchQuery = "";
   updatePlaceholder();
   updateCursor();
 </script>
 
-<div class="input-container">
-  <input
-    type="search"
-    placeholder={placeholderAnimation
-      ? placeholderText + placeholderCursor
-      : ""}
-    on:focus={() => (placeholderAnimation = false)}
-    on:focusout={() => (placeholderAnimation = true)}
-    bind:value={searchQuery}
-    bind:this={searchBar}
-  />
-  <div
-    class="paste-btn"
-    on:click={async () => {
-      searchQuery = await navigator.clipboard.readText();
-      searchBar.focus();
-    }}
-  >
-    paste
+<div class="input-wrapper">
+  <div class="input-container">
+    <input
+      type="search"
+      bind:this={searchBar}
+      placeholder={placeholderAnimation
+        ? placeholderText + placeholderCursor
+        : ""}
+      on:focus={() => (placeholderAnimation = false)}
+      on:focusout={() => (placeholderAnimation = true)}
+      on:keypress={handleKeyPress}
+      bind:value={searchQuery}
+    />
+    <div
+      class="paste-btn"
+      on:click={async () => {
+        searchQuery = await navigator.clipboard.readText();
+        searchBar.focus();
+      }}
+    >
+      paste
+    </div>
   </div>
+  <h2 bind:this={subtitle} class="subtitle">
+    type an event id <span /> to see what's planned
+  </h2>
 </div>
 
 <style>
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .input-container {
     display: flex;
     flex-direction: row;
@@ -120,5 +173,47 @@
     font-weight: bold;
 
     cursor: pointer;
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    color: rgb(0, 0, 0);
+    font-style: italic;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 0px);
+    }
+    10% {
+      transform: translate(2px, 0px);
+    }
+    20% {
+      transform: translate(2px, 0px);
+    }
+    30% {
+      transform: translate(1px, 0px);
+    }
+    40% {
+      transform: translate(0px, 0px);
+    }
+    50% {
+      transform: translate(-1px, 0px);
+    }
+    60% {
+      transform: translate(-2px, 0px);
+    }
+    70% {
+      transform: translate(-2px, 0px);
+    }
+    80% {
+      transform: translate(-1px, 0px);
+    }
+    90% {
+      transform: translate(0px, 0px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
   }
 </style>
