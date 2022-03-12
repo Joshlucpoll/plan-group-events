@@ -10,8 +10,31 @@
 </main>
 
 <footer>
-  <hr />
-  {new Date().getFullYear()} <span class="footer-pge">pge</span>™
+  <div class="horizontal-line" />
+  <div class="items">
+    <div>
+      pge @
+      {new Date().getFullYear()}
+    </div>
+    •
+    <a
+      href="mailto:hello@joshlucpoll.com"
+      target="_blank"
+      rel="noopener noreferrer">mail me</a
+    >
+    •
+    <a
+      href="https://github.com/Joshlucpoll/plan-group-events/issues"
+      target="_blank"
+      rel="noopener noreferrer">feature request</a
+    >
+    •
+    <a
+      href="https://github.com/Joshlucpoll/plan-group-events"
+      target="_blank"
+      rel="noopener noreferrer">source</a
+    >
+  </div>
 </footer>
 
 <style>
@@ -26,21 +49,40 @@
     box-sizing: border-box;
   }
 
-  hr {
-    stroke-width: 5px;
-  }
   footer {
-    margin: 5rem;
+    margin: 5rem 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     font-weight: 400;
     font-style: italic;
+    color: black;
+    opacity: 0.5;
   }
 
-  .footer-pge {
-    font-weight: bold;
-    margin-left: 0.3rem;
+  .horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    opacity: 0.3;
+    margin-bottom: 2rem;
+  }
+
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+  }
+
+  .items > * {
+    padding: 0 0.75rem;
+  }
+
+  a {
+    text-decoration: underline;
+    color: inherit;
   }
 </style>
