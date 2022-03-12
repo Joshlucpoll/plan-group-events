@@ -1,4 +1,35 @@
-<iframe
+<script context="module">
+  export async function load({ params, fetch }) {
+    const url = "https://plangroup.events/api/view?id=" + params.id;
+    const res = await fetch(url);
+
+    if (res.ok) {
+      const json = await res.json();
+      return {
+        props: {
+          event: json,
+        },
+      };
+    }
+
+    const formattedId = params.id
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    return {
+      status: res.status,
+      error: new Error(`Sorry bud, ${formattedId} isn't an event`),
+    };
+  }
+</script>
+
+<script>
+  import { page } from "$app/stores";
+
+  export let event;
+</script>
+
+<!-- <iframe
   title="map"
   width="600"
   height="450"
@@ -20,3 +51,18 @@
   src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=-73.7638,42.6564&z=13&l=map&size=600,300"
   alt="Yandex Map of -73.7638,42.6564"
 />
+-->
+<svelte:head>
+  <title>{event ? event.title : $page.params.id}</title>
+</svelte:head>
+
+<h1>{event.title}</h1>
+<h2>{event.description}</h2>
+<h2>{event.location}</h2>
+<h2>{new Date(event.datetime).toDateString()}</h2>
+<h2>Participants:</h2>
+<ul>
+  {#each event.participants as participant}
+    <li>{participant}</li>
+  {/each}
+</ul>

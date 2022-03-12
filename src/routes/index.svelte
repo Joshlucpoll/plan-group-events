@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   import SearchBar from "$lib/SearchBar.svelte";
+  import smoothscroll from "smoothscroll-polyfill";
 
   export const prerender = true;
 
@@ -20,6 +21,7 @@
     return shadows;
   }
 
+  smoothscroll.polyfill();
   let aboutEl;
   const shadowStyle = "text-shadow: " + longShadowCalculator(0.78, 50, "black");
 </script>
@@ -38,10 +40,12 @@
 
   <div class="container">
     <SearchBar />
-    <h2 class="subtitle">type an event id <span /> to see what's planned</h2>
   </div>
 
-  <div on:click={() => aboutEl.scrollIntoView(true)} class="explore-btn">
+  <div
+    on:click={() => aboutEl.scrollIntoView({ behavior: "smooth" })}
+    class="explore-btn"
+  >
     Huh?
   </div>
 </section>
@@ -152,12 +156,6 @@
     font-weight: bolder;
   }
 
-  .subtitle {
-    margin-top: 1rem;
-    color: rgb(0, 0, 0);
-    font-style: italic;
-  }
-
   .explore-btn {
     margin-bottom: 3rem;
     padding: 0.75rem 1rem;
@@ -223,6 +221,7 @@
     background: #d08b5b;
     background: -webkit-linear-gradient(to right, #c2875d, #f3a46c);
     background: linear-gradient(to right, #b67343, #f3a46c);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
