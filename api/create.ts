@@ -24,8 +24,15 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   var data;
 
   try {
-    const { title, description, datetime, location, organiser, participants } =
-      request.query;
+    const {
+      title,
+      description,
+      datetime,
+      location,
+      organiser,
+      email,
+      participants,
+    } = request.query;
 
     data = {
       title,
@@ -33,20 +40,26 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       datetime: parseInt(datetime as string),
       location: stringCheckBool(location as string),
       organiser: organiser,
-      participants: (participants as string).split(","),
+      organiser_email: stringCheckBool(email as string),
+      participants:
+        (participants as string) == "false"
+          ? false
+          : (participants as string).split(","),
       created_at: Math.trunc(Date.now() / 1000),
       updated_at: Math.trunc(Date.now() / 1000),
     };
   } catch (error) {
     response.status(400).send("Could not parse params\n\n" + error);
+    await app.delete();
+    return;
   }
 
-  // const id = uuidv4();
   var id: string;
   var ref;
+
+  const file = readFileSync(join(__dirname, "nouns.txt"), "utf8");
+  const nouns = file.split("\n");
   while (true) {
-    const file = readFileSync(join(__dirname, "nouns.txt"), "utf8");
-    const nouns = file.split("\n");
     const getRanNoun = () => nouns[Math.floor(Math.random() * nouns.length)];
     const randomNouns = [getRanNoun(), getRanNoun(), getRanNoun()];
 

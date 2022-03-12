@@ -17,21 +17,30 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const db = admin.database();
 
-  let id;
-
+  let id, name;
   try {
     id = request.query.id;
+    name = request.query.name;
   } catch (error) {
     response.status(400).send("Could not parse params\n\n" + error);
     await app.delete();
     return;
   }
 
-  const ref = db.ref("/events/" + id);
-  await ref.get().then((snap) => {
-    const val = snap.val();
-    if (val) response.status(200).send(val);
-    else response.status(404).send("Event not found");
-  });
+  const ref = db.ref(`/events/${id}/participants`);
+
+  let newParticipants = [];
+
+  const snap = await ref.get();
+  if (snap.exists()) {
+    const rawParticipants = snap.val();
+    newParticipants = rawParticipants == false ? [] : rawParticipants;
+
+    newParticipants.push(name);
+    await ref.set(newParticipants);
+    response.status(200).send(newParticipants);
+  } else {
+    response.status(404).send("Event not found");
+  }
   await app.delete();
 };
