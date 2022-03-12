@@ -21,9 +21,9 @@
     return shadows;
   }
 
-  smoothscroll.polyfill();
   let aboutEl;
   const shadowStyle = "text-shadow: " + longShadowCalculator(0.78, 50, "black");
+  if (typeof window !== "undefined") smoothscroll.polyfill();
 </script>
 
 <svelte:head>
