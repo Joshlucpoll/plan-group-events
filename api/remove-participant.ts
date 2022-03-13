@@ -41,7 +41,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       newParticipants.splice(index, 1);
     }
 
-    await ref.set(newParticipants);
+    await ref.set(newParticipants == [] ? false : newParticipants);
     response.status(200).send(newParticipants);
   } else {
     response.status(404).send("Event not found");
