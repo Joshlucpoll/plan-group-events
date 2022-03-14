@@ -7,7 +7,8 @@
       const json = await res.json();
       return {
         props: {
-          event: json,
+          event: json.data,
+          authenticated: json.authenticated,
         },
       };
     }
@@ -23,10 +24,11 @@
   }
 </script>
 
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
 
   export let event;
+  export let authenticated: boolean;
 </script>
 
 <!-- <iframe
@@ -56,6 +58,7 @@
   <title>{event ? event.title : $page.params.id}</title>
 </svelte:head>
 
+<p>authenticated: {authenticated}</p>
 <h1>{event.title}</h1>
 <h2>{event.description}</h2>
 <h2>{event.location}</h2>

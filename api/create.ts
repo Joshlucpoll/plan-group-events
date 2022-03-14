@@ -1,11 +1,46 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import admin from "firebase-admin";
 import dotenv from "dotenv";
+import jsonwebtoken from "jsonwebtoken";
+import nodemailer from "nodemailer";
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
+const makeToken = (email: string, id: string) => {
+  const expirationDate = new Date();
+  expirationDate.setHours(new Date().getHours() + 24);
+  return jsonwebtoken.sign(
+    { email, id, expirationDate },
+    process.env.JWT_SECRET_KEY
+  );
+};
+
+const emailTemplate = ({ id, username, title, token }) => {
+  let rawHTML: string = readFileSync(
+    join(__dirname, "email_template_event_creation.html"),
+    "utf8"
+  );
+
+  rawHTML = rawHTML.replaceAll("{event_title}", title);
+  rawHTML = rawHTML.replaceAll("{word_blend}", id.split("-").join("."));
+  rawHTML = rawHTML.replaceAll("{id}", id);
+  rawHTML = rawHTML.replaceAll("{token}", token);
+  rawHTML = rawHTML.replaceAll(
+    "{current_year}",
+    new Date().getFullYear().toString()
+  );
+
+  return rawHTML;
+};
+
 const stringCheckBool = (str: string) =>
   str == "true" || str == "false" ? str == "true" : str;
+
+const validateEmail = (email: string) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   dotenv.config();
@@ -34,13 +69,20 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       participants,
     } = request.query;
 
+    let checkedEmail = stringCheckBool(email as string);
+    if (checkedEmail) {
+      checkedEmail = validateEmail(checkedEmail as string)
+        ? checkedEmail
+        : false;
+    }
+
     data = {
       title,
       description: stringCheckBool(description as string),
       datetime: parseInt(datetime as string),
       location: stringCheckBool(location as string),
       organiser: organiser,
-      organiser_email: stringCheckBool(email as string),
+      organiser_email: checkedEmail,
       participants:
         (participants as string) == "false"
           ? false
@@ -71,8 +113,38 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     }
   }
 
-  await ref.set(data).then((outcome) => {
-    response.status(201).send(id);
-  });
+  await ref.set(data);
+  if (data.organiser_email) {
+    // payload["token"] = makeToken(data.organiser_email, id);
+    // send event creation email
+
+    const mailOptions = {
+      from: '"pge no-reply" <no-reply@verify.plangroup.events>',
+      to: data.organiser_email,
+      subject: `${data.title} event has been created!`,
+      html: emailTemplate({
+        id,
+        username: data.organiser,
+        title: data.title,
+        token: makeToken(data.organiser_email, id),
+      }),
+    };
+
+    const transporter = nodemailer.createTransport({
+      host: "email-smtp-us-east-1.amazonaws.com",
+      port: 465,
+      auth: {
+        user: process.env.SES_SMTP_USER,
+        pass: process.env.SES_SMTP_PASS,
+      },
+    });
+
+    // should implement error contingency
+    await transporter.sendMail(mailOptions, (error) => {});
+  }
+  response
+    .status(201)
+    .send({ id, email_active: data.organiser_email != false });
+
   await app.delete();
 };

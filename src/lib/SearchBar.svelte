@@ -1,14 +1,15 @@
 <script lang="ts">
   const urlIdPattern = /\b[^\d\W]+\b-\b[^\d\W]+\b-\b[^\d\W]+\b/;
   const variationPattern = /\b[^\d\W]+\b \b[^\d\W]+\b \b[^\d\W]+\b/;
+  const variationPattern2 = /\b[^\d\W]+\b\.\b[^\d\W]+\b\.\b[^\d\W]+\b/;
 
   const placeholders = [
     "machine career guy",
     "plant-wind-document",
     "Tongue Might Swimming",
-    "style move tale",
-    "smell-door-train",
-    "Spell Drama Ball",
+    "style.move.tale",
+    "Smell-Door-Train",
+    "Spell.Drama.Ball",
   ];
   let currentPlaceholder = Math.floor(Math.random() * placeholders.length);
   let placeholderAnimation = true;
@@ -53,12 +54,16 @@
 
   async function handleKeyPress(e) {
     if (e.charCode == 13) {
-      const match = urlIdPattern.exec(searchQuery);
-      const variationMatch = variationPattern.exec(searchQuery);
+      const lower = searchQuery.toLowerCase();
+      const match = urlIdPattern.exec(lower);
+      const variationMatch = variationPattern.exec(lower);
+      const variationMatch2 = variationPattern2.exec(lower);
 
       if (match) document.location.href = `/${match[0]}`;
       else if (variationMatch)
         document.location.href = `/${variationMatch[0].split(" ").join("-")}`;
+      else if (variationMatch2)
+        document.location.href = `/${variationMatch2[0].split(".").join("-")}`;
       else {
         subtitle.innerHTML = `'${searchQuery}'' is an invalid event id :(`;
         subtitle.style.color = "red";
@@ -119,7 +124,7 @@
     </div>
   </div>
   <h2 bind:this={subtitle} class="subtitle">
-    type an event id <span /> to see what's planned
+    type your word-blend <span /> to see what's planned
   </h2>
 </div>
 

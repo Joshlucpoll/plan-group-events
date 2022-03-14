@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/add.ts": {
+    "api/create.ts": {
       "includeFiles": "api/nouns.txt"
     }
   }

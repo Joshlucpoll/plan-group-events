@@ -3,6 +3,8 @@ import admin from "firebase-admin";
 import dotenv from "dotenv";
 import jsonwebtoken from "jsonwebtoken";
 import nodemailer from "nodemailer";
+const { readFileSync } = require("fs");
+const { join } = require("path");
 
 const makeToken = (email: string, id: string) => {
   const expirationDate = new Date();
@@ -13,11 +15,9 @@ const makeToken = (email: string, id: string) => {
   );
 };
 
-const emailTemplate = ({ username, link }) => `
-  <h2>Hey ${username}</h2>
-  <p>Here's the login link you just requested:</p>
-  <p>${link}</p>
-`;
+const emailTemplate = ({ username, id }) {
+
+};
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   dotenv.config();
@@ -58,7 +58,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       subject: "Here's your magic link",
       html: emailTemplate({
         username: val.organiser,
-        link: `http://plangroup.events/auth?token=${token}`,
+        id,
       }),
     };
 

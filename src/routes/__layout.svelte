@@ -17,10 +17,14 @@
       {new Date().getFullYear()}
     </div>
     •
+    <a href="https://joshlucpoll.com" target="_blank" rel="noopener noreferrer"
+      >joshlucpoll</a
+    >
+    •
     <a
-      href="mailto:hello@joshlucpoll.com"
+      href="mailto:hello@plangroup.events"
       target="_blank"
-      rel="noopener noreferrer">mail me</a
+      rel="noopener noreferrer">mail</a
     >
     •
     <a

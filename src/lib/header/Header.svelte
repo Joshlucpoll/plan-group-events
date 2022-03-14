@@ -10,7 +10,7 @@
   </div>
 
   <div class="corner">
-    <a sveltekit:prefetch href="/new" class="create-btn">
+    <a sveltekit:prefetch href="/create" class="create-btn">
       <div class="create">Create</div>
     </a>
   </div>
