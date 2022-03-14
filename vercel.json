@@ -1,7 +1,10 @@
 {
   "functions": {
     "api/create.ts": {
-      "includeFiles": "api/nouns.txt"
+      "includeFiles": [
+        "api/nouns.txt",
+        "api/email_template_event_creation.html"
+      ]
     }
   }
 }
