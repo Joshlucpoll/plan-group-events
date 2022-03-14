@@ -54,7 +54,8 @@
   }
 
   footer {
-    margin: 5rem 0;
+    margin-top: 5rem;
+    padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,8 +63,9 @@
 
     font-weight: 400;
     font-style: italic;
-    color: black;
-    opacity: 0.5;
+    color: white;
+    background-color: black;
+    /* opacity: 0.5; */
   }
 
   .horizontal-line {
