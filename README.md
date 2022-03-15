@@ -1,6 +1,6 @@
 # <img src ="https://github.com/joshlucpoll/plan-group-events/blob/main/static/favicon.png?raw=true" width="30"> Plan Group Events
 
-![](https://github.com/joshlucpoll/plan-group-events/blob/main/static/cover.svg?raw=true)
+![](https://github.com/joshlucpoll/plan-group-events/blob/main/static/images/cover.svg?raw=true)
 
 Are you sick and tired of having to organise events for large groups -- working out who's coming and who's not 😰
 
