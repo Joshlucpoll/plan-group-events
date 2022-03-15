@@ -131,8 +131,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     };
 
     const transporter = nodemailer.createTransport({
-      host: "email-smtp-us-east-1.amazonaws.com",
-      port: 465,
+      host: "smtp-relay.sendinblue.com",
+      port: 587,
       auth: {
         user: process.env.SES_SMTP_USER,
         pass: process.env.SES_SMTP_PASS,

@@ -15,8 +15,22 @@ const makeToken = (email: string, id: string) => {
   );
 };
 
-const emailTemplate = ({ username, id }) {
+const emailTemplate = ({ id, username, title, token }) => {
+  let rawHTML: string = readFileSync(
+    join(__dirname, "email_template_event_creation.html"),
+    "utf8"
+  );
 
+  rawHTML = rawHTML.replaceAll("{event_title}", title);
+  rawHTML = rawHTML.replaceAll("{word_blend}", id.split("-").join("."));
+  rawHTML = rawHTML.replaceAll("{id}", id);
+  rawHTML = rawHTML.replaceAll("{token}", token);
+  rawHTML = rawHTML.replaceAll(
+    "{current_year}",
+    new Date().getFullYear().toString()
+  );
+
+  return rawHTML;
 };
 
 export default async (request: VercelRequest, response: VercelResponse) => {
@@ -57,14 +71,16 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       to: val.organiser_email,
       subject: "Here's your magic link",
       html: emailTemplate({
-        username: val.organiser,
         id,
+        username: val.organiser,
+        title: id,
+        token,
       }),
     };
 
     const transporter = nodemailer.createTransport({
-      host: "email-smtp-us-east-1.amazonaws.com",
-      port: 465,
+      host: "smtp-relay.sendinblue.com",
+      port: 587,
       auth: {
         user: process.env.SES_SMTP_USER,
         pass: process.env.SES_SMTP_PASS,
