@@ -82,7 +82,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       host: "smtp-relay.sendinblue.com",
       port: 587,
       auth: {
-        user: process.env.SES_SMTP_USER,
+        user: "hello@plangroup.events",
         pass: process.env.SES_SMTP_PASS,
       },
     });
