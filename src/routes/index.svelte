@@ -35,7 +35,7 @@
     <div class="title" style={shadowStyle}>
       <span>plan</span><span>group</span><span>events</span>
     </div>
-    <img class="cover" src="cover.svg" alt="coverphoto" />
+    <img class="cover" src="images/cover.svg" alt="coverphoto" />
   </div>
 
   <div class="container">
@@ -50,9 +50,9 @@
   </div>
 </section>
 
-<h1>Wait a minute, what is this?</h1>
-
-<div bind:this={aboutEl}>
+<h1 bind:this={aboutEl}>Wait a minute, what is this?</h1>
+<img src="images/shrug-peep.svg" alt="peep shruging" />
+<div>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum
   luctus elit nec sollicitudin. Phasellus eget sem quis nulla pellentesque
   elementum. Sed vel lectus suscipit, finibus diam eget, tempus felis. Nulla non

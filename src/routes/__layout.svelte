@@ -13,8 +13,8 @@
   <div class="horizontal-line" />
   <div class="items">
     <div>
-      pge @
-      {new Date().getFullYear()}
+      © pge
+      {new Date().getFullYear()}. Some rights reserved
     </div>
     •
     <a href="https://joshlucpoll.com" target="_blank" rel="noopener noreferrer"
