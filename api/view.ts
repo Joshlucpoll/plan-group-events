@@ -23,9 +23,9 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   try {
     id = request.query.id;
-    if (request.query.hasOwnProperty("token")) {
+    try {
       token = request.query.token;
-    }
+    } catch {}
   } catch (error) {
     response.status(400).send("Could not parse params\n\n" + error);
     await app.delete();
