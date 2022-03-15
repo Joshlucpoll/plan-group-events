@@ -1,7 +1,8 @@
 <script context="module">
-  export async function load({ params, fetch }) {
-    const url = "https://plangroup.events/api/view?id=" + params.id;
-    const res = await fetch(url);
+  export async function load({ params, fetch, url }) {
+    const apiUrl = `https://plangroup.events/api/view?id=${params.id}&${url.searchParams}`;
+
+    const res = await fetch(apiUrl);
 
     if (res.ok) {
       const json = await res.json();
