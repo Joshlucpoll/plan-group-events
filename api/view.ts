@@ -23,7 +23,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   try {
     id = request.query.id;
-    if ("token" in request.query) {
+    if (request.query.hasOwnProperty("token")) {
       token = request.query.token;
     }
   } catch (error) {
@@ -42,23 +42,23 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   if (!data) response.status(404).send("Event not found");
   else if (data && token) {
     let decoded;
-    // try {
-    decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET_KEY);
+    try {
+      decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET_KEY);
 
-    if (
-      !decoded.hasOwnProperty("email") ||
-      !decoded.hasOwnProperty("expirationDate") ||
-      !decoded.hasOwnProperty("id")
-    )
+      if (
+        !decoded.hasOwnProperty("email") ||
+        !decoded.hasOwnProperty("expirationDate") ||
+        !decoded.hasOwnProperty("id")
+      )
+        response.status(207).send({ data, authenticated: false });
+      else if (decoded.expirationDate < new Date())
+        response.status(207).send({ data, authenticated: false });
+      else if (decoded.id != id || decoded.email != email)
+        response.status(207).send({ data, authenticated: false });
+      else response.status(200).send({ data, authenticated: true });
+    } catch {
       response.status(207).send({ data, authenticated: false });
-    else if (decoded.expirationDate < new Date())
-      response.status(207).send({ data, authenticated: false });
-    else if (decoded.id != id || decoded.email != email)
-      response.status(207).send({ data, authenticated: false });
-    else response.status(200).send({ data, authenticated: true });
-    // } catch {
-    //   response.status(207).send({ data, authenticated: false });
-    // }
+    }
   } else response.status(200).send({ data, authenticated: false });
 
   await app.delete();
