@@ -8,7 +8,7 @@ const { join } = require("path");
 
 const makeToken = (email: string, id: string) => {
   const expirationDate = new Date();
-  expirationDate.setHours(new Date().getHours() + 24);
+  expirationDate.setHours(new Date().getHours() + 1);
   return jsonwebtoken.sign(
     { email, id, expirationDate },
     process.env.JWT_SECRET_KEY
