@@ -27,6 +27,11 @@
 
 <script lang="ts">
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
+
+  onMount(() =>
+    window.history.replaceState({}, document.title, window.location.pathname)
+  );
 
   export let event;
   export let authenticated: boolean;
