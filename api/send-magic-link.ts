@@ -21,12 +21,12 @@ const emailTemplate = ({ id, username, title, token }) => {
     "utf8"
   );
 
-  rawHTML = rawHTML.replace("/{event_title}/g", title);
-  rawHTML = rawHTML.replace("/{word_blend}/g", id.split("-").join("."));
-  rawHTML = rawHTML.replace("/{id}/g", id);
-  rawHTML = rawHTML.replace("/{token}/g", token);
+  rawHTML = rawHTML.replace(/{event_title}/g, title);
+  rawHTML = rawHTML.replace(/{word_blend}/g, id.split("-").join("."));
+  rawHTML = rawHTML.replace(/{id}/g, id);
+  rawHTML = rawHTML.replace(/{token}/g, token);
   rawHTML = rawHTML.replace(
-    "/{current_year}/g",
+    /{current_year}/g,
     new Date().getFullYear().toString()
   );
 
