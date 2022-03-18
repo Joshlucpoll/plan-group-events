@@ -1,6 +1,15 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Header from "$lib/header/Header.svelte";
   import "../app.css";
+
+  onMount(() => {
+    var viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute(
+      "content",
+      viewport.content + ", height=" + window.innerHeight
+    );
+  });
 </script>
 
 <Header />
