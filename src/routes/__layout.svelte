@@ -38,6 +38,10 @@
       target="_blank"
       rel="noopener noreferrer">source</a
     >
+    •
+    <a href="https://icons8.com" target="_blank" rel="noopener noreferrer"
+      >icons by Icons8</a
+    >
   </div>
 </footer>
 

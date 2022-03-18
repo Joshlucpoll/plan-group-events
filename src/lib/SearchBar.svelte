@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Tooltip from "./Tooltip.svelte";
+
   const urlIdPattern = /\b[^\d\W]+\b-\b[^\d\W]+\b-\b[^\d\W]+\b/;
   const variationPattern = /\b[^\d\W]+\b \b[^\d\W]+\b \b[^\d\W]+\b/;
   const variationPattern2 = /\b[^\d\W]+\b\.\b[^\d\W]+\b\.\b[^\d\W]+\b/;
@@ -124,7 +126,17 @@
     </div>
   </div>
   <h2 bind:this={subtitle} class="subtitle">
-    type your word-blend <span /> to see what's planned
+    type your word-blend
+    <Tooltip
+      title="a word blend in created for each event, it's made of 3 nouns. if you made an event check your email for the word blend, or ask the organiser if you didn't"
+    >
+      <img
+        id="help-icon"
+        src="https://img.icons8.com/material-outlined/24/000000/help.png"
+        alt="help icon"
+      />
+    </Tooltip>
+    to see what's planned
   </h2>
 </div>
 
@@ -181,9 +193,17 @@
   }
 
   .subtitle {
+    display: flex;
+    align-items: center;
     margin-top: 1rem;
     color: rgb(0, 0, 0);
     font-style: italic;
+  }
+
+  #help-icon {
+    display: inline;
+    height: 1.2rem;
+    padding: 0 0.2rem 0 0.2rem;
   }
 
   @keyframes shake {
