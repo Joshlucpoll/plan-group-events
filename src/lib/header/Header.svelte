@@ -1,5 +1,5 @@
 <script lang="ts">
-  import logo from "./pge-logo.svg";
+  import logo from "./pge-logo.png";
 </script>
 
 <header>
