@@ -61,6 +61,7 @@
     flex-direction: column;
     padding: 1rem;
     width: 100%;
+    min-height: max-content;
     max-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -91,6 +92,8 @@
 
   .items {
     display: flex;
+    flex-wrap: wrap;
+    line-height: 1.6rem;
     align-items: center;
     justify-content: center;
     font-weight: lighter;
