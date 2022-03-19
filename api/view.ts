@@ -3,6 +3,18 @@ import admin from "firebase-admin";
 import dotenv from "dotenv";
 import jsonwebtoken from "jsonwebtoken";
 
+const authenticateToken = (token, id, email) => {
+  if (
+    !token.hasOwnProperty("email") ||
+    !token.hasOwnProperty("expirationDate") ||
+    !token.hasOwnProperty("id")
+  )
+    return false;
+  else if (token.expirationDate < new Date()) return false;
+  else if (token.id != id || token.email != email) return false;
+  else return true;
+};
+
 export default async (request: VercelRequest, response: VercelResponse) => {
   dotenv.config();
   const certs = JSON.parse(
@@ -32,8 +44,15 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return;
   }
 
-  const ref = db.ref("/events/" + id);
-  const snap = await ref.get();
+  let snap;
+  try {
+    const ref = db.ref("/events/" + id);
+    snap = await ref.get();
+  } catch (error) {
+    response.status(400).send("Invalid id format");
+    await app.delete();
+    return;
+  }
 
   const data = snap.val();
   const email = data.organiser_email;
@@ -45,15 +64,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     try {
       decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET_KEY);
 
-      if (
-        !decoded.hasOwnProperty("email") ||
-        !decoded.hasOwnProperty("expirationDate") ||
-        !decoded.hasOwnProperty("id")
-      )
-        response.status(207).send({ data, authenticated: false });
-      else if (decoded.expirationDate < new Date())
-        response.status(207).send({ data, authenticated: false });
-      else if (decoded.id != id || decoded.email != email)
+      if (authenticateToken(decoded, id, email))
         response.status(207).send({ data, authenticated: false });
       else response.status(200).send({ data, authenticated: true });
     } catch {

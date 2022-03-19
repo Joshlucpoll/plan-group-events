@@ -2,26 +2,39 @@
   import logo from "./pge-logo.png";
 </script>
 
+<img class="cover" src="images/cover.svg" alt="cover" />
 <header>
   <div class="logo corner">
-    <a sveltekit:prefetch href="/">
+    <a href="/">
       <img src={logo} alt="SvelteKit" />
     </a>
   </div>
 
   <div class="corner">
-    <a sveltekit:prefetch href="/create" class="create-btn">
+    <a href="/create" class="create-btn">
       <div class="create">Create</div>
     </a>
   </div>
 </header>
 
 <style>
+  .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6rem;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 0%;
+
+    z-index: -1;
+  }
+
   header {
-    height: 5rem;
+    height: 6rem;
     display: flex;
     justify-content: space-between;
-    align-content: flex-end;
+    align-content: center;
     z-index: 10;
     background: linear-gradient(
       180deg,

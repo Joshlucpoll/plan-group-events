@@ -93,8 +93,6 @@
     }
   }
 
-  let incorrectInput = false;
-
   let subtitle;
   let searchBar;
   let searchQuery = "";
@@ -128,7 +126,7 @@
   <h2 bind:this={subtitle} class="subtitle">
     type your word-blend
     <Tooltip
-      title="a word blend in created for each event, it's made of 3 nouns. if you made an event check your email for the word blend, or ask the organiser if you didn't"
+      title="a word blend is created for each event, it's made of 3 words. if you made an event check your email for the word blend, or ask the organiser if you didn't"
     >
       <img
         id="help-icon"

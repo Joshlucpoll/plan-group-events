@@ -121,6 +121,7 @@
     height: 70vh;
     width: 100%;
     object-fit: cover;
+    object-position: 50% 0%;
 
     z-index: 0;
   }

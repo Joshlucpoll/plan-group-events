@@ -1,6 +1,15 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import Header from "$lib/header/Header.svelte";
   import "../app.css";
+
+  onMount(() => {
+    var viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute(
+      "content",
+      viewport.content + ", height=" + window.innerHeight
+    );
+  });
 </script>
 
 <Header />
@@ -27,6 +36,8 @@
       rel="noopener noreferrer">mail</a
     >
     •
+    <a href="/privacy">privacy</a>
+    •
     <a
       href="https://github.com/Joshlucpoll/plan-group-events/issues"
       target="_blank"
@@ -52,6 +63,7 @@
     flex-direction: column;
     padding: 1rem;
     width: 100%;
+    min-height: max-content;
     max-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -82,9 +94,12 @@
 
   .items {
     display: flex;
+    flex-wrap: wrap;
+    line-height: 1.6rem;
     align-items: center;
     justify-content: center;
     font-weight: lighter;
+    padding: 0 2rem;
   }
 
   .items > * {
