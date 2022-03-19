@@ -36,6 +36,8 @@
       rel="noopener noreferrer">mail</a
     >
     •
+    <a href="/privacy">privacy</a>
+    •
     <a
       href="https://github.com/Joshlucpoll/plan-group-events/issues"
       target="_blank"
@@ -97,6 +99,7 @@
     align-items: center;
     justify-content: center;
     font-weight: lighter;
+    padding: 0 2rem;
   }
 
   .items > * {
