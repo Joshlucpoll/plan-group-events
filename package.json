@@ -25,7 +25,7 @@
   "dependencies": {
     "@fontsource/fira-mono": "^4.5.0",
     "@lukeed/uuid": "^2.0.0",
-    "cookie": "^0.4.1",
+    "cookie": "^0.4.2",
     "dotenv": "^15.0.0",
     "firebase-admin": "^10.0.2",
     "jsonwebtoken": "^8.5.1",

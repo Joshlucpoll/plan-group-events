@@ -3,6 +3,7 @@ import admin from "firebase-admin";
 import dotenv from "dotenv";
 import jsonwebtoken from "jsonwebtoken";
 import nodemailer from "nodemailer";
+import { serialize } from "cookie";
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
@@ -57,6 +58,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const db = admin.database();
   var data;
+  var token;
 
   try {
     const {
@@ -118,6 +120,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     // payload["token"] = makeToken(data.organiser_email, id);
     // send event creation email
 
+    token = makeToken(data.organiser_email, id);
+
     const mailOptions = {
       from: '"pge no-reply" <no-reply@verify.plangroup.events>',
       to: data.organiser_email,
@@ -126,7 +130,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         id,
         username: data.organiser,
         title: data.title,
-        token: makeToken(data.organiser_email, id),
+        token,
       }),
     };
 
@@ -141,7 +145,11 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
     // should implement error contingency
     await transporter.sendMail(mailOptions, (error) => {});
+
+    const cookie = serialize(id, token);
+    response.setHeader("Set-Cookie", [cookie]);
   }
+
   response
     .status(201)
     .send({ id, email_active: data.organiser_email != false });
