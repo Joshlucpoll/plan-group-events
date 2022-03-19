@@ -15,5 +15,5 @@
 </script>
 
 <h1>{title}</h1>
-<img src="images/moustache-peeps.svg" alt="404" />
 <SearchBar />
+<img src="images/moustache-peeps.svg" alt="404" />
