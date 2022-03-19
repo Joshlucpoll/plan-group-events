@@ -42,7 +42,7 @@
     box-shadow: 1px 1px 1px #ddd;
     background: white;
     border-radius: 10px;
-    padding: 6px;
+    padding: 10px;
     position: absolute;
     z-index: 100;
     max-width: 300px;
