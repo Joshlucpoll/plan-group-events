@@ -116,38 +116,44 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   }
 
   await ref.set(data);
-  if (data.organiser_email) {
-    // payload["token"] = makeToken(data.organiser_email, id);
-    // send event creation email
+  try {
+    if (data.organiser_email) {
+      // payload["token"] = makeToken(data.organiser_email, id);
+      // send event creation email
 
-    token = makeToken(data.organiser_email, id);
+      token = makeToken(data.organiser_email, id);
 
-    const mailOptions = {
-      from: '"pge no-reply" <no-reply@verify.plangroup.events>',
-      to: data.organiser_email,
-      subject: `${data.title} event has been created!`,
-      html: emailTemplate({
-        id,
-        username: data.organiser,
-        title: data.title,
-        token,
-      }),
-    };
+      const mailOptions = {
+        from: '"pge no-reply" <no-reply@verify.plangroup.events>',
+        to: data.organiser_email,
+        subject: `${data.title} event has been created!`,
+        html: emailTemplate({
+          id,
+          username: data.organiser,
+          title: data.title,
+          token,
+        }),
+      };
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp-relay.sendinblue.com",
-      port: 587,
-      auth: {
-        user: "hello@plangroup.events",
-        pass: process.env.SES_SMTP_PASS,
-      },
-    });
+      const transporter = nodemailer.createTransport({
+        host: "smtp-relay.sendinblue.com",
+        port: 587,
+        auth: {
+          user: "hello@plangroup.events",
+          pass: process.env.SES_SMTP_PASS,
+        },
+      });
 
-    // should implement error contingency
-    await transporter.sendMail(mailOptions, (error) => {});
+      // should implement error contingency
+      await transporter.sendMail(mailOptions, (error) => {});
 
-    const cookie = serialize(id, token);
-    response.setHeader("Set-Cookie", [cookie]);
+      const cookie = serialize(id, token);
+      response.setHeader("Set-Cookie", [cookie]);
+    }
+  } catch (error) {
+    response.status(500).send(error);
+    await app.delete();
+    return;
   }
 
   response
