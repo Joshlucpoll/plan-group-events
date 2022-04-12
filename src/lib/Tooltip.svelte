@@ -6,12 +6,11 @@
 
   function mouseOver(event) {
     isHovered = true;
-    x = event.pageX + 20;
-    y = event.offsetY + 20;
+    mouseMove(event);
   }
   function mouseMove(event) {
-    x = event.pageX + 20;
-    y = event.offsetY + 20;
+    x = event.pageX + 10 - window.scrollX;
+    y = event.pageY + 10 - window.scrollY;
   }
   function mouseLeave() {
     isHovered = false;
@@ -23,6 +22,7 @@
   on:mouseover={mouseOver}
   on:mouseleave={mouseLeave}
   on:mousemove={mouseMove}
+  on:scroll={mouseLeave}
   on:focus={() => (isHovered = true)}
   on:focusout={() => (isHovered = false)}
 >
@@ -43,7 +43,7 @@
     background: white;
     border-radius: 10px;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     max-width: 300px;
 

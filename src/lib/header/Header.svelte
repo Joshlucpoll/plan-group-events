@@ -70,7 +70,7 @@
   .create-btn {
     padding: 0.75rem 1rem;
     background-color: white;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     border: solid 2px black;
     cursor: pointer;
     transition: transform 200ms ease;
