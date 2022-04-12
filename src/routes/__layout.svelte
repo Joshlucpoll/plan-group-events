@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    padding-bottom: 0;
     width: 100%;
     min-height: max-content;
     max-width: 1024px;
@@ -70,7 +71,7 @@
   }
 
   footer {
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
     padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
@@ -78,10 +79,8 @@
     justify-content: center;
 
     font-weight: 400;
-    font-style: italic;
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     background-color: black;
-    /* opacity: 0.5; */
   }
 
   .horizontal-line {

@@ -50,59 +50,43 @@
   </div>
 </section>
 
-<h1 bind:this={aboutEl}>Wait a minute, what is this?</h1>
-<img src="images/shrug-peep.svg" alt="peep shruging" />
-<div>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum
-  luctus elit nec sollicitudin. Phasellus eget sem quis nulla pellentesque
-  elementum. Sed vel lectus suscipit, finibus diam eget, tempus felis. Nulla non
-  cursus risus. Nullam leo mi, pharetra in ex at, bibendum sollicitudin mi.
-  Curabitur sit amet blandit ex, eu tempus tellus. Donec elementum rutrum
-  fermentum. Nullam feugiat nulla nec tortor feugiat, eu fermentum justo
-  dapibus. Sed ultricies metus quis tempor interdum. Ut dapibus lectus eu tortor
-  posuere dapibus. Curabitur et semper lacus. Ut ultrices orci eu lectus
-  malesuada, placerat elementum diam lacinia. Sed ac cursus urna. Donec blandit
-  vulputate dolor a hendrerit. Quisque sed scelerisque sem, ut interdum sapien.
-  Vestibulum feugiat magna vel libero posuere feugiat. Vivamus laoreet euismod
-  lacus quis lobortis. Suspendisse at interdum leo, at mattis odio. Nulla
-  fringilla, elit quis elementum hendrerit, ante diam molestie velit, vel
-  molestie eros mi quis erat. Sed sollicitudin porta risus, ac aliquet lectus
-  pulvinar lobortis. In ultrices libero at neque convallis, et venenatis tellus
-  dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-  per inceptos himenaeos. Donec tincidunt dui a imperdiet rutrum. Nulla vehicula
-  non lectus non ultrices. Curabitur lacus metus, tempus sed nunc rhoncus,
-  lacinia hendrerit metus. Duis quis consequat mauris, at convallis justo. Nunc
-  vulputate convallis turpis, vitae fringilla ante imperdiet eu. Sed viverra
-  gravida massa gravida malesuada. Pellentesque velit nisl, cursus venenatis
-  viverra sit amet, commodo id ligula. Fusce condimentum placerat magna, nec
-  mattis nisl hendrerit consectetur. Vestibulum arcu arcu, maximus a enim
-  ullamcorper, fringilla interdum nibh. Ut tincidunt convallis enim, ac posuere
-  dui fringilla sit amet. Proin ullamcorper porta arcu ut hendrerit. Etiam et
-  ligula at sapien lacinia fringilla id non felis. Nam mauris leo, ornare id
-  lectus ut, bibendum dignissim diam. Vestibulum non fringilla lorem. Proin in
-  dui ac ligula interdum pretium eget et lacus. Cras nibh leo, gravida quis
-  congue id, pretium id tellus. Curabitur libero sapien, dictum vitae rutrum
-  vitae, ultricies et felis. Aliquam pulvinar mollis luctus. Duis eu tempor
-  enim. Aenean iaculis sit amet turpis sed ultricies. Praesent mollis mauris
-  eget arcu dignissim ullamcorper. Nulla et dignissim ipsum, et interdum lacus.
-  Nulla lacus dui, maximus in neque ut, finibus auctor eros. Sed placerat
-  aliquet eros vitae viverra. Interdum et malesuada fames ac ante ipsum primis
-  in faucibus. Maecenas malesuada ipsum faucibus sapien vestibulum lacinia.
-  Curabitur rutrum magna et purus cursus elementum vel at ligula. Donec et
-  maximus risus. Mauris blandit suscipit ligula ac ultrices. Proin ut efficitur
-  leo, tincidunt posuere turpis. Nam vehicula rhoncus sem, pellentesque
-  tristique justo rhoncus ac. Praesent rhoncus orci ac semper semper. Praesent
-  quam magna, efficitur sit amet porttitor egestas, ultricies non risus. Etiam
-  fringilla maximus odio vel euismod. Maecenas fermentum sapien ac nisi vehicula
-  aliquet. Phasellus vitae condimentum enim, et fermentum leo.
-</div>
+<div bind:this={aboutEl} class="horizontal-rule" />
 
-<!-- <div class="credit">
-  Made by
-  <a href="https://joshlucpoll.com" target="_blank" rel="noopener noreferrer">
-    Joshlucpoll
-  </a>
-</div> -->
+<h1>Wait a minute,<br /> what is this?</h1>
+<p class="description">
+  Plan Group Events was created to help you plan events for a large number of
+  people. Want to suggest an activity to a group chat, but need to book for an
+  exact number of people? You’ve come to the right place!
+</p>
+<div class="step-section">
+  <div class="step-wrapper">
+    <div class="top-row">
+      <div class="step-num">1</div>
+      <div class="step-desc">create an event</div>
+      <div class="step-num">2</div>
+      <div class="step-desc">share to friends</div>
+      <div class="step-num">3</div>
+      <div class="step-desc">know who's coming</div>
+      <img
+        class="sitting-peep"
+        src="/images/sitting-peep.svg"
+        alt="Sitting Peep"
+      />
+    </div>
+    <div class="bottom-row">
+      <div />
+      <img src="/images/create-peep.svg" alt="Create Peep" />
+      <div />
+      <img src="/images/share-peep.svg" alt="Share Peep" />
+      <div />
+      <img src="/images/know-peep.svg" alt="Know Peep" />
+    </div>
+  </div>
+</div>
+<a href="/create" class="create-btn">
+  <div class="create">Create event</div>
+</a>
+
 <style>
   section {
     display: flex;
@@ -174,8 +158,122 @@
     transform: translateY(-0.25rem);
   }
 
+  .horizontal-rule {
+    margin: 0 auto 2rem auto;
+    height: 1px;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
   h1 {
-    font-weight: bold;
+    margin: 0;
+    font-size: 3rem;
     text-align: left;
+    color: white;
+    -webkit-text-stroke: 2.7px black;
+    font-weight: 800;
+  }
+
+  .description {
+    max-width: 500px;
+    font-weight: bold;
+    opacity: 0.5;
+
+    margin: 2rem 0;
+  }
+
+  .step-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    background-color: #e5ba6b;
+
+    box-shadow: inset 0px 10px 8px -4px #00000056,
+      inset 0px -10px 8px -4px #00000056;
+  }
+
+  .step-wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .top-row,
+  .bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .bottom-row {
+    align-items: baseline;
+  }
+
+  .step-num {
+    background-color: white;
+    border: solid 0.1rem black;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    line-height: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .step-desc {
+    font-weight: bold;
+    opacity: 0.5;
+  }
+
+  .sitting-peep {
+    display: none;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .top-row {
+      flex-direction: column;
+    }
+
+    .step-desc {
+      margin: 1rem 0;
+    }
+
+    .bottom-row {
+      display: none;
+    }
+
+    .sitting-peep {
+      display: block;
+      width: 80%;
+      max-height: 30vh;
+    }
+  }
+
+  .create-btn {
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: solid 2px black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 200ms ease;
+  }
+
+  .create-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .create {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
   }
 </style>
