@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap");
 
 :root {
   font-family: "Raleway", Arial, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -79,8 +79,12 @@ a:hover {
 }
 
 h1 {
-  font-size: 2rem;
-  text-align: center;
+  margin: 0;
+  font-size: 3rem;
+  text-align: left;
+  color: white;
+  -webkit-text-stroke: 0.17rem black;
+  font-weight: 900;
 }
 
 h2 {
@@ -108,8 +112,30 @@ button:focus:not(:focus-visible) {
   outline: none;
 }
 
-@media (min-width: 720px) {
+.pge-btn {
+  width: fit-content;
+  padding: 0.75rem 1rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  border: solid 2px black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+
+.pge-btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-text {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
   h1 {
     font-size: 2.4rem;
+  -webkit-text-stroke: 0.15rem black;
   }
 }

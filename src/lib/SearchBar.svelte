@@ -129,19 +129,17 @@
     </div>
   </div>
   <h2 bind:this={subtitle} class="subtitle">
-    {#if subtitleError}{:else}
-      type your word-blend
-      <Tooltip
-        title="a word blend is created for each event, it's made of 3 words. if you made an event check your email for the word blend, or ask the organiser if you didn't"
-      >
-        <img
-          id="help-icon"
-          src="https://img.icons8.com/material-outlined/24/000000/help.png"
-          alt="help icon"
-        />
-      </Tooltip>
-      to see what's planned
-    {/if}
+    type your word-blend
+    <Tooltip
+      title="a word blend is created for each event, it's made of 3 words. if you made an event check your email for the word blend, or ask the organiser if you didn't"
+    >
+      <img
+        id="help-icon"
+        src="https://img.icons8.com/material-outlined/24/000000/help.png"
+        alt="help icon"
+      />
+    </Tooltip>
+    to see what's planned
   </h2>
 </div>
 

@@ -52,7 +52,7 @@
 
 <div bind:this={aboutEl} class="horizontal-rule" />
 
-<h1>Wait a minute,<br /> what is this?</h1>
+<h1>Wait a sec,<br /> what is this?</h1>
 <p class="description">
   Plan Group Events was created to help you plan events for a large number of
   people. Want to suggest an activity to a group chat, but need to book for an
@@ -83,8 +83,8 @@
     </div>
   </div>
 </div>
-<a href="/create" class="create-btn">
-  <div class="create">Create event</div>
+<a href="/create" class="pge-btn create">
+  <div class="btn-text">Create event</div>
 </a>
 
 <style>
@@ -165,21 +165,12 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
-  h1 {
-    margin: 0;
-    font-size: 3rem;
-    text-align: left;
-    color: white;
-    -webkit-text-stroke: 2.7px black;
-    font-weight: 800;
-  }
-
   .description {
     max-width: 500px;
-    font-weight: bold;
+    font-weight: 600;
     opacity: 0.5;
 
-    margin: 2rem 0;
+    margin: 1.5rem 0;
   }
 
   .step-section {
@@ -255,25 +246,8 @@
     }
   }
 
-  .create-btn {
-    width: fit-content;
-    margin: 2rem auto;
-    padding: 0.75rem 1rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    border: solid 2px black;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 200ms ease;
-  }
-
-  .create-btn:hover {
-    transform: scale(1.05);
-  }
-
   .create {
-    color: black;
-    font-weight: bold;
+    margin: 2rem auto;
     text-decoration: none;
   }
 </style>

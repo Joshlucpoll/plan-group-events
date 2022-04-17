@@ -35,7 +35,10 @@
 
 <style>
   .wrapper {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1rem;
   }
   .tooltip {
     border: 1px solid #ddd;
@@ -51,5 +54,7 @@
     -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.2);
     font-style: normal;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
   }
 </style>

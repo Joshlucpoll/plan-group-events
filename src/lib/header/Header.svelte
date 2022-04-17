@@ -11,8 +11,8 @@
   </div>
 
   <div class="corner">
-    <a href="/create" class="create-btn">
-      <div class="create">Create</div>
+    <a href="/create" class="pge-btn">
+      <div class="btn-text">Create</div>
     </a>
   </div>
 </header>
@@ -67,22 +67,7 @@
     cursor: pointer;
   }
 
-  .create-btn {
-    padding: 0.75rem 1rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    border: solid 2px black;
-    cursor: pointer;
-    transition: transform 200ms ease;
-  }
-
-  .create-btn:hover,
   .logo:hover {
     transform: scale(1.05);
-  }
-
-  .create {
-    color: black;
-    font-weight: bold;
   }
 </style>
