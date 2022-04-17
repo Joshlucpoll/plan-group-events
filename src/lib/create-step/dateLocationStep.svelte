@@ -1,14 +1,40 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+  export let stepIndex;
+
+  const dispatch = createEventDispatcher();
+
+  let containerStyle =
+    "transform: scale(0.666) translateY(50%); filter: blur(2px); opacity: 0.5; z-index: 8";
+
+  $: {
+    if (stepIndex >= 2) {
+      containerStyle =
+        "transform: scale(1) translateY(0); filter: blur(0px); opacity: 1; z-index: 10";
+    } else if (stepIndex <= 1) {
+      containerStyle = `transform: scale(${
+        stepIndex * 0.666
+      }) translateY(80%); filter: blur(2px); opacity: 0.5; z-index: 8`;
+    } else {
+      containerStyle = `transform: scale(${
+        0.666 + (stepIndex - 1) / 3
+      }) translateY(${80 - (stepIndex - 1) * 80}%); filter: blur(${
+        2 - (stepIndex - 1) * 2
+      }px); opacity: ${0.5 + (stepIndex - 1) / 2}; z-index: ${
+        stepIndex - 1 < 0.5 ? 9 : 10
+      }`;
+    }
+  }
 </script>
 
-<div class="container">
+<div class="container" style={containerStyle}>
   <p>when's it happening?</p>
   <input placeholder="name" />
   <p><em>optional</em>: tell people where it's happening</p>
   <input placeholder="location" />
 
   <div class="step-nav">
-    <div class="pge-btn">
+    <div class="pge-btn" on:click={() => dispatch("back")}>
       <div class="btn-text">back</div>
     </div>
   </div>

@@ -1,12 +1,30 @@
 <script lang="ts">
   import Tooltip from "$lib/Tooltip.svelte";
-  import { onMount } from "svelte";
-  import { space } from "svelte/internal";
+  import { createEventDispatcher } from "svelte";
 
-  export let containerHeight;
+  export let stepIndex;
+
+  const dispatch = createEventDispatcher();
+
+  let containerStyle =
+    "transform: scale(0) translateY(0); filter: blur(0); opacity: 1; z-index: 10";
+
+  $: {
+    if (stepIndex >= 1) {
+      containerStyle = `transform: scale(${
+        0.666 - ((stepIndex - 1) * 2) / 3
+      }) translateY(-50%); filter: blur(2px); opacity: 0.5; z-index: 9`;
+    } else {
+      containerStyle = `transform: scale(${1 - stepIndex / 3}) translateY(-${
+        stepIndex * 50
+      }%); filter: blur(${stepIndex * 2}px); opacity: ${
+        1 - stepIndex / 2
+      };  z-index: ${stepIndex < 0.5 ? 10 : 8}`;
+    }
+  }
 </script>
 
-<div class="container" bind:clientHeight={containerHeight}>
+<div class="container" style={containerStyle}>
   <p>
     well first, I’m going to need the name of the organiser (probably yours)<Tooltip
       title="why? so people know who's organising the event!"
@@ -23,7 +41,7 @@
   <input placeholder="email" />
 
   <div class="step-nav">
-    <div class="pge-btn">
+    <div class="pge-btn" on:click={() => dispatch("next")}>
       <div class="btn-text">next</div>
     </div>
   </div>
@@ -39,10 +57,6 @@
     width: min(calc(100vw - 2rem), calc(1024px - 2rem));
 
     position: absolute;
-    transform: scale(0.7) translateY(-50%);
-    filter: blur(2px);
-    opacity: 0.8;
-    z-index: 9;
   }
 
   #help-icon {

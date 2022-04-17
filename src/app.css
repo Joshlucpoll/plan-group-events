@@ -131,6 +131,7 @@ button:focus:not(:focus-visible) {
   color: black;
   font-weight: bold;
   text-decoration: none;
+  user-select: none;
 }
 
 @media (max-width: 720px) {

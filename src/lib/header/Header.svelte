@@ -22,7 +22,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 6rem;
+    height: 5rem;
     width: 100%;
     object-fit: cover;
     object-position: 50% 0%;
@@ -31,7 +31,7 @@
   }
 
   header {
-    height: 6rem;
+    height: 5rem;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -44,7 +44,7 @@
   }
 
   .corner {
-    margin: 1rem 2rem 0rem 2rem;
+    margin: 0rem 2rem 0rem 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
