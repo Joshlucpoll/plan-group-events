@@ -77,9 +77,9 @@
   }
 
   input {
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 0.7rem;
     border: solid 2px black;
-    border-radius: 2rem;
+    border-radius: 0.75rem;
     max-width: min(400px, 50vw);
     width: 100%;
   }

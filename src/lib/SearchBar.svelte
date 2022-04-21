@@ -156,7 +156,7 @@
     align-items: center;
 
     background-color: rgb(255, 255, 255);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     border: solid 2px black;
     box-shadow: 5px 5px 20px 5px rgba(162, 162, 162, 0.459);
 
@@ -177,7 +177,7 @@
     width: 100%;
 
     color: black;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     border: none;
 
     text-align: center;
