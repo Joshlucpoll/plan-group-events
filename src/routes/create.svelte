@@ -92,7 +92,15 @@
 </div>
 
 <style>
+  .container {
+    min-height: calc(100vh - 10rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   section {
+    /* vertical-align: middle; */
     height: 100%;
   }
 

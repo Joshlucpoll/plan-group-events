@@ -27,7 +27,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background-color: #FFCF77;
+  background-color: #ffcf77;
   /* background: linear-gradient(
     200deg,
     var(--primary-color) 0%,
@@ -137,6 +137,6 @@ button:focus:not(:focus-visible) {
 @media (max-width: 720px) {
   h1 {
     font-size: 2.4rem;
-  -webkit-text-stroke: 0.15rem black;
+    -webkit-text-stroke: 0.15rem black;
   }
 }
