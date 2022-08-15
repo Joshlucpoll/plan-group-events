@@ -17,7 +17,7 @@
         ? 1 - $stepIndex * 2
         : 0}; transform: translateY({$stepIndex * 40}px); pointerEvents: false"
     >
-      So you wanna<br />make an event?
+      So you want to<br />make an event?
     </h1>
     <div class="step-indicator under">
       <div
